@@ -34,6 +34,9 @@ async function main(request: Request) {
 
   const signature = request.headers.get("X-Signature-Ed25519")!;
   const timestamp = request.headers.get("X-Signature-Timestamp")!;
+
+  console.log(publicKey, signature, timestamp);
+
   const { body, isValid } = verifySignature({
     publicKey,
     signature,
@@ -52,7 +55,7 @@ async function main(request: Request) {
       type: InteractionResponseTypes.Pong,
     });
   } else if (payload.type === InteractionTypes.ApplicationCommand) {
-    return json( {
+    return json({
       type: InteractionResponseTypes.ChannelMessageWithSource,
       data: {
         content: "Hello, world!",
