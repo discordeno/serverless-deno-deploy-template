@@ -1,6 +1,6 @@
 import {
   Interaction,
-  InteractionResponse,
+  // InteractionResponse,
   InteractionResponseTypes,
   InteractionTypes,
   json,
