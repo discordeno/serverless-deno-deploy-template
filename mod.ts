@@ -13,8 +13,6 @@ serve({
   "/": main,
 });
 
-// Trigger deno deploy
-
 async function main(request: Request) {
   // Validate the incmoing request; whether or not, it includes
   // the specified headers that are sent by Discord.
