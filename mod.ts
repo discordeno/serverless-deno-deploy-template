@@ -35,8 +35,6 @@ async function main(request: Request) {
   const signature = request.headers.get("X-Signature-Ed25519")!;
   const timestamp = request.headers.get("X-Signature-Timestamp")!;
 
-  console.log(publicKey, signature, timestamp);
-
   const { body, isValid } = verifySignature({
     publicKey,
     signature,
