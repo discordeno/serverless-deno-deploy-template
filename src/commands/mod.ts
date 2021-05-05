@@ -5,9 +5,13 @@ import {
   InteractionResponse,
 } from "../../deps.ts";
 import ping from "./general/ping.ts";
+import avatar from "./general/avatar.ts";
+import language from "./general/language.ts";
 
 export const commands: Record<string, Command | undefined> = {
   ping,
+  avatar,
+  language,
 };
 
 export interface Command {
