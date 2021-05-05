@@ -68,8 +68,6 @@ async function main(request: Request) {
       });
     }
 
-    console.log(payload.data.name);
-    console.log(commands);
     const command = commands[payload.data.name];
     if (!command) {
       return json({
