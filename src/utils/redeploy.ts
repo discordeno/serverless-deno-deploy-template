@@ -3,13 +3,18 @@ import { commands } from "../commands/mod.ts";
 import translate from "../languages/translate.ts";
 
 export default async function redeploy(request: Request) {
-  const authorization = request.headers.get("authorization")!;
-  if (authorization !== Deno.env.get("REDEPLOY_AUTHORIZATION")) {
+  console.log("inside redeploy", 1);
+  const authorization = request.headers.get("authorization");
+  if (
+    !authorization || (authorization !== Deno.env.get("REDEPLOY_AUTHORIZATION"))
+  ) {
+    console.log("inside redeploy", 2);
     return json({ error: "Invalid authorization header." }, { status: 401 });
   }
 
+  console.log("inside redeploy", 3);
   await updateGlobalCommands();
-
+  console.log("inside redeploy", 4);
   return json({ success: true });
 }
 
