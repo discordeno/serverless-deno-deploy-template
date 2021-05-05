@@ -1,4 +1,4 @@
-import { json, upsertSlashCommands } from "../../deps.ts";
+import { json, rest, upsertSlashCommands } from "../../deps.ts";
 import { commands } from "../commands/mod.ts";
 import translate from "../languages/translate.ts";
 
@@ -19,6 +19,8 @@ export default async function redeploy(request: Request) {
 }
 
 export async function updateGlobalCommands() {
+  rest.token = `Bot ${Deno.env.get("DISCORD_TOKEN")}`;
+  
   // UPDATE GLOBAL COMMANDS
   await upsertSlashCommands(
     Object.entries(commands)
