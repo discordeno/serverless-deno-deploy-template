@@ -1,13 +1,16 @@
 import {
+  DiscordInteractionResponseTypes,
   Interaction,
   InteractionResponseTypes,
   InteractionTypes,
   json,
   serve,
-  SnakeCasedPropertiesDeep,
+  snakeKeysToCamelCase,
   validateRequest,
   verifySignature,
 } from "./deps.ts";
+import { commands } from "./src/commands/mod.ts";
+import { isInteractionResponse } from "./src/utils/isInteractionResponse.ts";
 
 serve({
   "/": main,
@@ -47,18 +50,42 @@ async function main(request: Request) {
     });
   }
 
-  const payload: SnakeCasedPropertiesDeep<Interaction> = JSON.parse(body);
+  const payload = snakeKeysToCamelCase<Interaction>(JSON.parse(body));
   if (payload.type === InteractionTypes.Ping) {
     return json({
       type: InteractionResponseTypes.Pong,
     });
   } else if (payload.type === InteractionTypes.ApplicationCommand) {
-    return json({
-      type: InteractionResponseTypes.ChannelMessageWithSource,
-      data: {
-        content: "Hello, world!",
-      },
-    });
+    if (!payload.data?.name) {
+      return json({
+        type: InteractionResponseTypes.ChannelMessageWithSource,
+        data: {
+          content:
+            "Something went wrong. I was not able to find the command name in the payload sent by Discord.",
+        },
+      });
+    }
+
+    const command = commands[payload.data.name];
+    if (!command) {
+      return json({
+        type: InteractionResponseTypes.ChannelMessageWithSource,
+        data: {
+          content: "Something went wrong. I was not able to find this command.",
+        },
+      });
+    }
+
+    const result = await command.execute(payload);
+    if (!isInteractionResponse(result)) {
+      return json({
+        data: result,
+        type: DiscordInteractionResponseTypes.ChannelMessageWithSource,
+      });
+    }
+
+    // DENO/TS BUG DOESNT LET US SEND A OBJECT WITHOUT THIS OVERRIDE
+    return json(result as unknown as { [key: string]: unknown });
   }
 
   return json({ error: "Bad request" }, { status: 400 });
