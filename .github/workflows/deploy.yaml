@@ -11,3 +11,4 @@ jobs:
         run: DISCORD_TOKEN=${{ secrets.DISCORD_TOKEN }} deno test --unstable --coverage=coverage --allow-net tests/mod.ts
       - name: Trigger an update request
         run: curl --request POST --url ${{ secrets.DENO_DEPLOY_URL }} --header 'Authorization: ${{ secrets.REDEPLOY_AUTHORIZATION }}'
+        
