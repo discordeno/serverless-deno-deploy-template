@@ -9,5 +9,5 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Trigger an update request
-        run: "curl --request POST --url ${{ secrets.DENO_DEPLOY_URL }}/redeploy -H 'Authorization: ${{ secrets.REDEPLOY_AUTHORIZATION }}'"
+        run: "curl --request POST --url ${{ secrets.DENO_DEPLOY_URL }}redeploy -H 'Authorization: ${{ secrets.REDEPLOY_AUTHORIZATION }}'"
         
