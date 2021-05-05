@@ -1,6 +1,6 @@
 import {
-  InteractionResponse,
   InteractionApplicationCommandCallbackData,
+  InteractionResponse,
 } from "../../deps.ts";
 
 export function isInteractionResponse(

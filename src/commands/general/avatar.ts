@@ -7,6 +7,7 @@ import translate from "../../languages/translate.ts";
 import { Command } from "../mod.ts";
 
 const command: Command = {
+  global: true,
   options: [
     {
       required: false,
@@ -21,7 +22,9 @@ const command: Command = {
 
     if (arg?.value) {
       const targetUser = payload.data?.resolved?.users?.[userId];
-      if (!targetUser) return { content: translate(payload.guildId!, "MISSING_MEMBER") };
+      if (!targetUser) {
+        return { content: translate(payload.guildId!, "MISSING_MEMBER") };
+      }
 
       const url = avatarURL(
         snowflakeToBigint(targetUser.id),
@@ -45,7 +48,9 @@ const command: Command = {
       };
     }
 
-    if (!payload.member) return { content: translate(payload.guildId!, "MISSING_MEMBER") };
+    if (!payload.member) {
+      return { content: translate(payload.guildId!, "MISSING_MEMBER") };
+    }
 
     return {
       embeds: [

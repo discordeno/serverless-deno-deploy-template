@@ -24,6 +24,6 @@ export default function translate(
     // Still not found in english so default to using the KEY_ITSELF
     if (!value) value = key;
   }
-  
+
   return value as string;
 }

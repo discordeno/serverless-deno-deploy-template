@@ -11,9 +11,11 @@ import {
 } from "./deps.ts";
 import { commands } from "./src/commands/mod.ts";
 import { isInteractionResponse } from "./src/utils/isInteractionResponse.ts";
+import redeploy from "./src/utils/redeploy.ts";
 
 serve({
   "/": main,
+  "/redeploy": redeploy,
 });
 
 async function main(request: Request) {
