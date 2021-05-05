@@ -5,7 +5,7 @@ import {
   InteractionTypes,
   json,
   serve,
-  snakeKeysToCamelCase,
+  camelize,
   validateRequest,
   verifySignature,
 } from "./deps.ts";
@@ -52,7 +52,7 @@ async function main(request: Request) {
     });
   }
 
-  const payload = snakeKeysToCamelCase<Interaction>(JSON.parse(body));
+  const payload = camelize<Interaction>(JSON.parse(body));
   if (payload.type === InteractionTypes.Ping) {
     return json({
       type: InteractionResponseTypes.Pong,
