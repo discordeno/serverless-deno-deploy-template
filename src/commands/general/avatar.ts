@@ -1,9 +1,6 @@
-import {
-  avatarURL,
-  DiscordApplicationCommandOptionTypes,
-  snowflakeToBigint,
-} from "../../../deps.ts";
+import { DiscordApplicationCommandOptionTypes } from "../../../deps.ts";
 import translate from "../../languages/translate.ts";
+import { Embed } from "../../utils/Embed.ts";
 import { Command } from "../mod.ts";
 
 const command: Command = {
@@ -19,62 +16,27 @@ const command: Command = {
   execute: function (payload) {
     const arg = payload.data?.options?.[0];
     const userId = (arg?.value || "") as string;
+    const targetUser = payload.data?.resolved?.users?.[userId] ||
+      payload.member?.user || payload.user!;
+
+    const embed = new Embed().setAuthor(
+      `${targetUser.username}#${targetUser?.discriminator}`,
+      targetUser,
+    ).setImage(targetUser);
 
     if (arg?.value) {
-      const targetUser = payload.data?.resolved?.users?.[userId];
       if (!targetUser) {
         return { content: translate(payload.guildId!, "MISSING_MEMBER") };
       }
 
-      const url = avatarURL(
-        snowflakeToBigint(targetUser.id),
-        snowflakeToBigint(targetUser.discriminator),
-        targetUser.avatar,
-        2048,
-      );
-
-      return {
-        embeds: [
-          {
-            author: {
-              name: `${targetUser.username}#${targetUser?.discriminator}`,
-              iconUrl: url,
-            },
-            image: {
-              url,
-            },
-          },
-        ],
-      };
+      return { embeds: [embed] };
     }
 
     if (!payload.member) {
       return { content: translate(payload.guildId!, "MISSING_MEMBER") };
     }
 
-    return {
-      embeds: [
-        {
-          author: {
-            name:
-              `${payload.member.user.username}#${payload.member.user.discriminator}`,
-            iconUrl: avatarURL(
-              snowflakeToBigint(payload.member.user.id),
-              snowflakeToBigint(payload.member.user.discriminator),
-              payload.member.user.avatar,
-            ),
-          },
-          image: {
-            url: avatarURL(
-              snowflakeToBigint(payload.member.user.id),
-              snowflakeToBigint(payload.member.user.discriminator),
-              payload.member.user.avatar,
-              2048,
-            ),
-          },
-        },
-      ],
-    };
+    return { embeds: [embed] };
   },
 };
 
