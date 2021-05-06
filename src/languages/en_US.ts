@@ -4,7 +4,8 @@ const english: Language = {
   // COMMON STRINGS
 
   MISSING_MEMBER: "No member was found.",
-
+  MISSING_PERM_LEVEL: "You do not have the necessary permissions to use this command.",
+  
   // COMMANDS STRINGS
 
   // Avatar Command

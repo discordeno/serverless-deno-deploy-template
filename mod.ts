@@ -10,7 +10,9 @@ import {
   verifySignature,
 } from "./deps.ts";
 import { commands } from "./src/commands/mod.ts";
+import translate from "./src/languages/translate.ts";
 import { isInteractionResponse } from "./src/utils/isInteractionResponse.ts";
+import hasPermissionLevel from "./src/utils/permissionLevels.ts";
 import redeploy from "./src/utils/redeploy.ts";
 
 serve({
@@ -74,6 +76,19 @@ async function main(request: Request) {
         type: InteractionResponseTypes.ChannelMessageWithSource,
         data: {
           content: "Something went wrong. I was not able to find this command.",
+        },
+      });
+    }
+
+    // Make sure the user has the permission to run this command.
+    if (!(await hasPermissionLevel(command, payload))) {
+      return json({
+        type: InteractionResponseTypes.ChannelMessageWithSource,
+        data: {
+          content: translate(
+            payload.guildId!,
+            "MISSING_PERM_LEVEL",
+          ),
         },
       });
     }
