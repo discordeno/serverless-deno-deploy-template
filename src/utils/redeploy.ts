@@ -24,7 +24,7 @@ export async function updateGlobalCommands() {
   const token = Deno.env.get("DISCORD_TOKEN");
   rest.token = `Bot ${token}`;
   setApplicationId(
-    new TextDecoder().decode(decode(token?.split(".")[0])) || "",
+    new TextDecoder().decode(decode(token?.split(".")[0] || "")) || "",
   );
 
   // UPDATE GLOBAL COMMANDS
