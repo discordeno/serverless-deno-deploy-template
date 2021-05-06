@@ -4,7 +4,7 @@ import { Command } from "../mod.ts";
 const command: Command = {
   global: true,
   execute: function (payload) {
-    return { content: translate(payload.guildId!, "ping", "PING_RESPONSE") };
+    return { content: translate(payload.guildId!, "PING_RESPONSE") };
   },
 };
 
