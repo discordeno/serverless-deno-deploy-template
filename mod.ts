@@ -12,6 +12,7 @@ import {
 import { commands } from "./src/commands/mod.ts";
 import translate from "./src/languages/translate.ts";
 import { isInteractionResponse } from "./src/utils/isInteractionResponse.ts";
+import { logWebhook } from "./src/utils/logWebhook.ts";
 import hasPermissionLevel from "./src/utils/permissionLevels.ts";
 import redeploy from "./src/utils/redeploy.ts";
 
@@ -95,6 +96,7 @@ async function main(request: Request) {
 
     const result = await command.execute(payload);
     if (!isInteractionResponse(result)) {
+      await logWebhook(payload).catch(console.error);
       return json({
         data: result,
         type: DiscordInteractionResponseTypes.ChannelMessageWithSource,
