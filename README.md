@@ -25,4 +25,4 @@ A serverless template for slash commands using [Deno Deploy](https://deno.com/de
 
 [Deploy from URL - Deno Deploy](https://ibb.co/H2yb3cb)
 
-- And contragulations! You have deployed your project on Deno Deploy. Simple, wasn't it?
+- And congratulations! You have deployed your project on Deno Deploy. Simple, wasn't it?
