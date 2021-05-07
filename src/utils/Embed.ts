@@ -72,7 +72,7 @@ export class Embed {
         iconUrl: avatarURL(
           snowflakeToBigint(iconUrl.id),
           snowflakeToBigint(iconUrl?.discriminator),
-          { avatar: iconUrl.avatar, animated: true },
+          { avatar: iconUrl.avatar!, animated: true },
         ),
         url,
       };
@@ -140,7 +140,7 @@ export class Embed {
         url: avatarURL(
           snowflakeToBigint(url.id),
           snowflakeToBigint(url.discriminator),
-          { avatar: url.avatar, animated: true, size: 2048 },
+          { avatar: url.avatar!, animated: true, size: 2048 },
         ),
       };
     }
