@@ -72,7 +72,7 @@ export class Embed {
         iconUrl: avatarURL(
           snowflakeToBigint(iconUrl.id),
           snowflakeToBigint(iconUrl?.discriminator),
-          iconUrl.avatar,
+          { avatar: iconUrl.avatar, animated: true },
         ),
         url,
       };
@@ -136,12 +136,13 @@ export class Embed {
   setImage(url: string | User) {
     if (typeof url === "string") this.image = { url };
     else {
-        this.image = { url: avatarURL(
-            snowflakeToBigint(url.id),
-            snowflakeToBigint(url.discriminator),
-            url.avatar,
-            2048,
-          )}
+      this.image = {
+        url: avatarURL(
+          snowflakeToBigint(url.id),
+          snowflakeToBigint(url.discriminator),
+          { avatar: url.avatar, animated: true, size: 2048 },
+        ),
+      };
     }
 
     return this;
@@ -171,3 +172,4 @@ export interface EmbedFile {
   blob: unknown;
   name: string;
 }
+    
