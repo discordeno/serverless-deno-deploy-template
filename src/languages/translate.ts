@@ -13,7 +13,7 @@ export default function translate(
 
   if (Array.isArray(value)) return value.join("\n");
 
-  if (typeof value === "function") return value(args);
+  if (typeof value === "function") return value(...args);
   // Was not able to be translated
   if (!value) {
     // Check if this key is available in english
