@@ -21,7 +21,7 @@ A serverless template for slash commands using [Deno Deploy](https://deno.com/de
 
 ![Environment variables - Deno Deploy](https://i.ibb.co/HXPgQHw/image.png)
 
-- (**Optional**) Update the deployment URL to the forked or template URL and click on "Deploy" button.
+- Fork the repo with the **Use This Template** button at the top right. Then, update the deployment URL to the forked or template URL and click on "Deploy" button.
 
 ![Deploy from URL - Deno Deploy](https://i.ibb.co/b3VCD4C/image.png)
 
