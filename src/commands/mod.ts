@@ -2,17 +2,19 @@ import {
   ApplicationCommandOption,
   Interaction,
   InteractionApplicationCommandCallbackData,
-  InteractionResponse,
-} from "../../deps.ts";
-import ping from "./general/ping.ts";
-import avatar from "./general/avatar.ts";
-import language from "./general/language.ts";
-import { PermissionLevels } from "../utils/permissionLevels.ts";
+  InteractionResponse
+} from "../../deps";
+import ping from "./general/ping";
+import avatar from "./general/avatar";
+import language from "./general/language";
+import coolpix from "./general/coolpix";
+import { PermissionLevels } from "../utils/permissionLevels";
 
 export const commands: Record<string, Command | undefined> = {
   ping,
   avatar,
   language,
+  coolpix
 };
 
 export interface Command {
@@ -34,7 +36,7 @@ export interface Command {
   options?: ApplicationCommandOption[];
   /** The function that will be called when the command is executed. */
   execute: (
-    payload: Interaction,
+    payload: Interaction
   ) =>
     | InteractionResponse
     | InteractionApplicationCommandCallbackData
