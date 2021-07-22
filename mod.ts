@@ -8,18 +8,13 @@ import {
   serve,
   validateRequest,
   verifySignature,
-} from "./deps.ts";
-import { commands } from "./src/commands/mod.ts";
-import translate from "./src/languages/translate.ts";
-import { isInteractionResponse } from "./src/utils/isInteractionResponse.ts";
-import { logWebhook } from "./src/utils/logWebhook.ts";
-import hasPermissionLevel from "./src/utils/permissionLevels.ts";
-import redeploy from "./src/utils/redeploy.ts";
-
-serve({
-  "/": main,
-  "/redeploy": redeploy,
-});
+} from "./deps";
+import { commands } from "./src/commands/mod";
+import translate from "./src/languages/translate";
+import { isInteractionResponse } from "./src/utils/isInteractionResponse";
+import { logWebhook } from "./src/utils/logWebhook";
+import hasPermissionLevel from "./src/utils/permissionLevels";
+import redeploy from "./src/utils/redeploy";
 
 async function main(request: Request) {
   // Validate the incmoing request; whether or not, it includes
@@ -109,3 +104,8 @@ async function main(request: Request) {
 
   return json({ error: "Bad request" }, { status: 400 });
 }
+
+serve({
+  "/": main,
+  "/redeploy": redeploy,
+});
