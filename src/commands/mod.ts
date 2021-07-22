@@ -3,12 +3,12 @@ import {
   Interaction,
   InteractionApplicationCommandCallbackData,
   InteractionResponse
-} from "../../deps";
-import ping from "./general/ping";
-import avatar from "./general/avatar";
-import language from "./general/language";
-import coolpix from "./general/coolpix";
-import { PermissionLevels } from "../utils/permissionLevels";
+} from "../../deps.ts";
+import ping from "./general/ping.ts";
+import avatar from "./general/avatar.ts";
+import language from "./general/language.ts";
+import coolpix from "./general/coolpix.ts";
+import { PermissionLevels } from "../utils/permissionLevels.ts";
 
 export const commands: Record<string, Command | undefined> = {
   ping,

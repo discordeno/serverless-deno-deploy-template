@@ -7,22 +7,22 @@ import {
   json,
   serve,
   validateRequest,
-  verifySignature,
-} from "./deps";
-import { commands } from "./src/commands/mod";
-import translate from "./src/languages/translate";
-import { isInteractionResponse } from "./src/utils/isInteractionResponse";
-import { logWebhook } from "./src/utils/logWebhook";
-import hasPermissionLevel from "./src/utils/permissionLevels";
-import redeploy from "./src/utils/redeploy";
+  verifySignature
+} from "./deps.ts";
+import { commands } from "./src/commands/mod.ts";
+import translate from "./src/languages/translate.ts";
+import { isInteractionResponse } from "./src/utils/isInteractionResponse.ts";
+import { logWebhook } from "./src/utils/logWebhook.ts";
+import hasPermissionLevel from "./src/utils/permissionLevels.ts";
+import redeploy from "./src/utils/redeploy.ts";
 
 async function main(request: Request) {
   // Validate the incmoing request; whether or not, it includes
   // the specified headers that are sent by Discord.
   const { error } = await validateRequest(request, {
     POST: {
-      headers: ["X-Signature-Ed25519", "X-Signature-Timestamp"],
-    },
+      headers: ["X-Signature-Ed25519", "X-Signature-Timestamp"]
+    }
   });
   if (error) {
     return json({ error: error.message }, { status: error.status });
@@ -31,7 +31,7 @@ async function main(request: Request) {
   const publicKey = Deno.env.get("DISCORD_PUBLIC_KEY");
   if (!publicKey) {
     return json({
-      error: "Missing Discord public key from environment variables.",
+      error: "Missing Discord public key from environment variables."
     });
   }
 
@@ -42,18 +42,21 @@ async function main(request: Request) {
     publicKey,
     signature,
     timestamp,
-    body: await request.text(),
+    body: await request.text()
   });
   if (!isValid) {
-    return json({ error: "Invalid request; could not verify the request" }, {
-      status: 401,
-    });
+    return json(
+      { error: "Invalid request; could not verify the request" },
+      {
+        status: 401
+      }
+    );
   }
 
   const payload = camelize<Interaction>(JSON.parse(body));
   if (payload.type === InteractionTypes.Ping) {
     return json({
-      type: InteractionResponseTypes.Pong,
+      type: InteractionResponseTypes.Pong
     });
   } else if (payload.type === InteractionTypes.ApplicationCommand) {
     if (!payload.data?.name) {
@@ -61,8 +64,8 @@ async function main(request: Request) {
         type: InteractionResponseTypes.ChannelMessageWithSource,
         data: {
           content:
-            "Something went wrong. I was not able to find the command name in the payload sent by Discord.",
-        },
+            "Something went wrong. I was not able to find the command name in the payload sent by Discord."
+        }
       });
     }
 
@@ -71,8 +74,8 @@ async function main(request: Request) {
       return json({
         type: InteractionResponseTypes.ChannelMessageWithSource,
         data: {
-          content: "Something went wrong. I was not able to find this command.",
-        },
+          content: "Something went wrong. I was not able to find this command."
+        }
       });
     }
 
@@ -81,11 +84,8 @@ async function main(request: Request) {
       return json({
         type: InteractionResponseTypes.ChannelMessageWithSource,
         data: {
-          content: translate(
-            payload.guildId!,
-            "MISSING_PERM_LEVEL",
-          ),
-        },
+          content: translate(payload.guildId!, "MISSING_PERM_LEVEL")
+        }
       });
     }
 
@@ -94,12 +94,12 @@ async function main(request: Request) {
       await logWebhook(payload).catch(console.error);
       return json({
         data: result,
-        type: DiscordInteractionResponseTypes.ChannelMessageWithSource,
+        type: DiscordInteractionResponseTypes.ChannelMessageWithSource
       });
     }
 
     // DENO/TS BUG DOESNT LET US SEND A OBJECT WITHOUT THIS OVERRIDE
-    return json(result as unknown as { [key: string]: unknown });
+    return json((result as unknown) as { [key: string]: unknown });
   }
 
   return json({ error: "Bad request" }, { status: 400 });
@@ -107,5 +107,5 @@ async function main(request: Request) {
 
 serve({
   "/": main,
-  "/redeploy": redeploy,
+  "/redeploy": redeploy
 });

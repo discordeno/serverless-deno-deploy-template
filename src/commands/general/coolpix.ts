@@ -1,7 +1,7 @@
-import { DiscordApplicationCommandOptionTypes } from "../../../deps";
-import translate from "../../languages/translate";
-import { Embed } from "../../utils/Embed";
-import { Command } from "../mod";
+import { DiscordApplicationCommandOptionTypes } from "../../../deps.ts";
+import translate from "../../languages/translate.ts";
+import { Embed } from "../../utils/Embed.ts";
+import { Command } from "../mod.ts";
 
 const command: Command = {
   global: true,
