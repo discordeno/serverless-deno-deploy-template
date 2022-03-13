@@ -1,3 +1,4 @@
+[![Update Commands In Bulk](https://github.com/discordeno/serverless-deno-deploy-template/actions/workflows/deploy.yaml/badge.svg)](https://github.com/discordeno/serverless-deno-deploy-template/actions/workflows/deploy.yaml)
 # serverless-template
 
 A serverless template for slash commands using [Deno Deploy](https://deno.com/deploy).
