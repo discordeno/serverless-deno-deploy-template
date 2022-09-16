@@ -1,7 +1,9 @@
 import english from "./en_US.ts";
+import korean from "./ko_KR.ts";
 
 const languages: Record<string, Language> = {
   english,
+  korean
 };
 
 export default languages;
