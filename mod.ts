@@ -9,12 +9,12 @@ import {
   validateRequest,
   verifySignature,
 } from "./deps.ts";
-import { commands } from "./src/commands/mod.ts";
-import translate from "./src/languages/translate.ts";
-import { isInteractionResponse } from "./src/utils/isInteractionResponse.ts";
-import { logWebhook } from "./src/utils/logWebhook.ts";
-import hasPermissionLevel from "./src/utils/permissionLevels.ts";
-import redeploy from "./src/utils/redeploy.ts";
+import { commands } from "template/commands/mod.ts";
+import translate from "template/languages/translate.ts";
+import { isInteractionResponse } from "template/utils/isInteractionResponse.ts";
+import { logWebhook } from "template/utils/logWebhook.ts";
+import hasPermissionLevel from "template/utils/permissionLevels.ts";
+import redeploy from "template/utils/redeploy.ts";
 
 serve({
   "/": main,

@@ -1,4 +1,4 @@
-import languages from "./mod.ts";
+import languages from "template/languages/mod.ts";
 
 /** This should hold the language names per guild id. <guildId, language> */
 export const serverLanguages = new Map<string, string>();

@@ -5,8 +5,8 @@ import {
   setApplicationId,
   upsertSlashCommands,
 } from "../../deps.ts";
-import { commands } from "../commands/mod.ts";
-import translate from "../languages/translate.ts";
+import { commands } from "template/commands/mod.ts";
+import translate from "template/languages/translate.ts";
 
 export default async function redeploy(request: Request) {
   const authorization = request.headers.get("authorization");

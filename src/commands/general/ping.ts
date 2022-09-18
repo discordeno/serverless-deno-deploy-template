@@ -1,5 +1,5 @@
-import translate from "../../languages/translate.ts";
-import { Command } from "../mod.ts";
+import translate from "template/languages/translate.ts";
+import { Command } from "template/commands/mod.ts";
 
 const command: Command = {
   global: true,

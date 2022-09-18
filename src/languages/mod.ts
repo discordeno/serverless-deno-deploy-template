@@ -1,5 +1,5 @@
-import english from "./en_US.ts";
-import korean from "./ko_KR.ts";
+import english from "template/languages/en_US.ts";
+import korean from "template/languages/ko_KR.ts";
 
 const languages: Record<string, Language> = {
   english,

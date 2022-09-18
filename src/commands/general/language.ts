@@ -1,8 +1,8 @@
 import { DiscordApplicationCommandOptionTypes } from "../../../deps.ts";
-import { Command } from "../mod.ts";
-import languages from "../../languages/mod.ts";
-import translate from "../../languages/translate.ts";
-import { updateGuildCommands } from "../../utils/redeploy.ts";
+import { Command } from "template/commands/mod.ts";
+import languages from "template/languages/mod.ts";
+import translate from "template/languages/translate.ts";
+import { updateGuildCommands } from "template/utils/redeploy.ts";
 
 const command: Command = {
   global: true,
