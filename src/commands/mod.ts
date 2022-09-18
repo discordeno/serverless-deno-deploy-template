@@ -4,9 +4,7 @@ import {
   InteractionApplicationCommandCallbackData,
   InteractionResponse,
 } from "../../deps.ts";
-import ping from "template/commands/general/ping.ts";
-import avatar from "template/commands/general/avatar.ts";
-import language from "template/commands/general/language.ts";
+import { ping, avatar, language } from "template/commands/general/mod.ts"
 import { PermissionLevels } from "template/utils/permissionLevels.ts";
 
 export const commands: Record<string, Command | undefined> = {

@@ -6,9 +6,9 @@ import {
   upsertSlashCommands,
 } from "../../deps.ts";
 import { commands } from "template/commands/mod.ts";
-import translate from "template/languages/translate.ts";
+import { translate } from "template/languages/mod.ts";
 
-export default async function redeploy(request: Request) {
+export async function redeploy(request: Request) {
   const authorization = request.headers.get("authorization");
   if (
     !authorization || (authorization !== Deno.env.get("REDEPLOY_AUTHORIZATION"))

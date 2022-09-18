@@ -10,11 +10,13 @@ import {
   verifySignature,
 } from "./deps.ts";
 import { commands } from "template/commands/mod.ts";
-import translate from "template/languages/translate.ts";
-import { isInteractionResponse } from "template/utils/isInteractionResponse.ts";
-import { logWebhook } from "template/utils/logWebhook.ts";
-import hasPermissionLevel from "template/utils/permissionLevels.ts";
-import redeploy from "template/utils/redeploy.ts";
+import { translate } from "template/languages/mod.ts";
+import { 
+  isInteractionResponse,
+  logWebhook,
+  hasPermissionLevel,
+  redeploy
+} from "template/utils/mod.ts";
 
 serve({
   "/": main,

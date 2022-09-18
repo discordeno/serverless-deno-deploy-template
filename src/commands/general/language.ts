@@ -1,10 +1,9 @@
 import { DiscordApplicationCommandOptionTypes } from "../../../deps.ts";
 import { Command } from "template/commands/mod.ts";
-import languages from "template/languages/mod.ts";
-import translate from "template/languages/translate.ts";
+import { languages, translate } from "template/languages/mod.ts";
 import { updateGuildCommands } from "template/utils/redeploy.ts";
 
-const command: Command = {
+export const language: Command = {
   global: true,
   options: [
     {
@@ -39,5 +38,3 @@ const command: Command = {
     };
   },
 };
-
-export default command;

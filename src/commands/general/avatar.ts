@@ -1,9 +1,9 @@
 import { DiscordApplicationCommandOptionTypes } from "../../../deps.ts";
-import translate from "template/languages/translate.ts";
+import { translate } from "template/languages/mod.ts";
 import { Embed } from "template/utils/Embed.ts";
 import { Command } from "template/commands/mod.ts";
 
-const command: Command = {
+export const avatar: Command = {
   global: true,
   options: [
     {
@@ -39,5 +39,3 @@ const command: Command = {
     return { embeds: [embed] };
   },
 };
-
-export default command;

@@ -1,7 +1,7 @@
 import { Interaction, validatePermissions } from "../../deps.ts";
 import { Command } from "template/commands/mod.ts";
 
-export default async function hasPermissionLevel(command: Command, payload: Interaction) {
+export async function hasPermissionLevel(command: Command, payload: Interaction) {
     // This command doesnt require a perm level so allow the command.
   if (!command.permissionLevels) return true;
 

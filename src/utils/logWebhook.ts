@@ -3,7 +3,7 @@ import {
   sendWebhook,
   snowflakeToBigint,
 } from "../../deps.ts";
-import { Embed } from "template/utils/Embed.ts";
+import { Embed } from "template/utils/mod.ts";
 
 export async function logWebhook(payload: Interaction) {
   const webhook = Deno.env.get("DISCORD_LOGS_WEBHOOK");
