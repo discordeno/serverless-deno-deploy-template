@@ -1,0 +1,10 @@
+{
+  "importMap": "./import_map.jsonc",
+  "compilerOptions": {
+    "strict": true
+  },
+  "tasks": {
+    "compile": "deno compile -A -r --import-map src/import_map.jsonc --config deno.jsonc --output build/server mod.ts",
+    "run": "deno run --allow-net --allow-env --allow-write --allow-read --watch mod.ts"
+  }
+}
