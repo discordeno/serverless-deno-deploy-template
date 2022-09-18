@@ -2,7 +2,7 @@
   "imports": {
     "template/": "./src/",
     "sift/": "https://deno.land/x/sift@0.4.2/",
-    "discordeno/": "https://deno.land/x/discordeno/mod.ts",
+    "discordeno/": "https://deno.land/x/discordeno/",
     "encoding/": "https://deno.land/std@0.156.0/encoding/"
   }
 }
