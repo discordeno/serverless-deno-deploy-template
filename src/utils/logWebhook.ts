@@ -1,8 +1,12 @@
 import {
-  Interaction,
   sendWebhook,
-  snowflakeToBigint,
 } from "../../deps.ts";
+
+import {
+  Interaction,
+  snowflakeToBigint
+} from "discordeno/mod.ts";
+
 import { Embed } from "template/utils/mod.ts";
 
 export async function logWebhook(payload: Interaction) {

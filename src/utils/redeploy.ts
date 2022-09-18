@@ -1,10 +1,12 @@
 import {
-  decode,
-  json,
   rest,
   setApplicationId,
   upsertSlashCommands,
 } from "../../deps.ts";
+
+import { decode } from "encoding/base64url.ts";
+import { json } from "sift/mod.ts";
+
 import { commands } from "template/commands/mod.ts";
 import { translate } from "template/languages/mod.ts";
 

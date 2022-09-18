@@ -4,9 +4,12 @@ import {
   EmbedField,
   EmbedFooter,
   EmbedImage,
-  snowflakeToBigint,
-  User,
 } from "../../deps.ts";
+
+import {
+  snowflakeToBigint,
+  User
+} from "discordeno/mod.ts";
 
 const embedLimits = {
   title: 256,

@@ -1,11 +1,15 @@
 import {
+  InteractionApplicationCommandCallbackData,
+} from "../../deps.ts";
+
+import {
   ApplicationCommandOption,
   Interaction,
-  InteractionApplicationCommandCallbackData,
-  InteractionResponse,
-} from "../../deps.ts";
+  InteractionResponse
+} from "discordeno/mod.ts";
+
 import { ping, avatar, language } from "template/commands/general/mod.ts"
-import { PermissionLevels } from "template/utils/permissionLevels.ts";
+import { PermissionLevels } from "template/utils/mod.ts";
 
 export const commands: Record<string, Command | undefined> = {
   ping,

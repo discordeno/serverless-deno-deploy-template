@@ -1,4 +1,7 @@
-import { Interaction, validatePermissions } from "../../deps.ts";
+import { validatePermissions } from "../../deps.ts";
+
+import { Interaction } from "discordeno/mod.ts";
+
 import { Command } from "template/commands/mod.ts";
 
 export async function hasPermissionLevel(command: Command, payload: Interaction) {

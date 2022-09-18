@@ -1,14 +1,20 @@
 import {
   camelize,
   DiscordInteractionResponseTypes,
+} from "./deps.ts";
+
+import {
+  json,
+  serve,
+  validateRequest
+} from "sift/mod.ts";
+import { 
   Interaction,
   InteractionResponseTypes,
   InteractionTypes,
-  json,
-  serve,
-  validateRequest,
-  verifySignature,
-} from "./deps.ts";
+  verifySignature
+} from "discordeno/mod.ts";
+
 import { commands } from "template/commands/mod.ts";
 import { translate } from "template/languages/mod.ts";
 import { 

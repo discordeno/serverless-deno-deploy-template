@@ -1,7 +1,10 @@
 import {
   InteractionApplicationCommandCallbackData,
-  InteractionResponse,
 } from "../../deps.ts";
+
+import {
+  InteractionResponse
+} from "discordeno/mod.ts";
 
 export function isInteractionResponse(
   response: InteractionResponse | InteractionApplicationCommandCallbackData,

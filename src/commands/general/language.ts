@@ -1,4 +1,5 @@
 import { DiscordApplicationCommandOptionTypes } from "../../../deps.ts";
+
 import { Command } from "template/commands/mod.ts";
 import { languages, translate } from "template/languages/mod.ts";
 import { updateGuildCommands } from "template/utils/redeploy.ts";
