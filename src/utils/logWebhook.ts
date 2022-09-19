@@ -20,8 +20,8 @@ export async function logWebhook(payload: Interaction) {
     .setAuthor(
       `${user.username}#${user.discriminator} used ${payload.data!.name}`,
       user,
-    ).addField("Channel", payload.channelId || "Channel ID unavailable", true)
-    .addField("Guild", payload.guildId || "Guild ID unavailable", true);
+    ).addField("Channel", payload.channelId?.toString() || "Channel ID unavailable", true)
+    .addField("Guild", payload.guildId?.toString() || "Guild ID unavailable", true);
 
   await sendWebhook(snowflakeToBigint(id), token, {
     embeds: [embed],

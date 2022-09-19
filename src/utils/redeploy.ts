@@ -3,6 +3,7 @@ import {
   setApplicationId,
   upsertSlashCommands,
 } from "../../deps.ts";
+import {  } from "sift/mod.ts";
 
 import { decode } from "encoding/base64url.ts";
 import { json } from "sift/mod.ts";

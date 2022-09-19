@@ -1,11 +1,8 @@
 import {
-  InteractionApplicationCommandCallbackData,
-} from "../../deps.ts";
-
-import {
   ApplicationCommandOption,
   Interaction,
-  InteractionResponse
+  InteractionResponse,
+  InteractionCallbackData
 } from "discordeno/mod.ts";
 
 import { ping, avatar, language } from "template/commands/general/mod.ts"
@@ -36,9 +33,9 @@ export interface Command {
   options?: ApplicationCommandOption[];
   /** The function that will be called when the command is executed. */
   execute: (
-    payload: Interaction,
+    payload: Interaction
   ) =>
     | InteractionResponse
-    | InteractionApplicationCommandCallbackData
-    | Promise<InteractionResponse | InteractionApplicationCommandCallbackData>;
+    | InteractionCallbackData
+    | Promise<InteractionResponse | InteractionCallbackData>;
 }

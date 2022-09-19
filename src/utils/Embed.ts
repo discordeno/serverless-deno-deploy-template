@@ -1,14 +1,11 @@
 import {
-  avatarURL,
-  EmbedAuthor,
-  EmbedField,
-  EmbedFooter,
-  EmbedImage,
-} from "../../deps.ts";
-
-import {
   snowflakeToBigint,
-  User
+  User,
+  getAvatarURL,
+  DiscordEmbedAuthor,
+  DiscordEmbedField,
+  DiscordEmbedFooter,
+  DiscordEmbedImage
 } from "discordeno/mod.ts";
 
 const embedLimits = {
@@ -31,14 +28,14 @@ export class Embed {
   file?: EmbedFile;
 
   color = 0x41ebf4;
-  fields: EmbedField[] = [];
-  author?: EmbedAuthor;
+  fields: DiscordEmbedField[] = [];
+  author?: DiscordEmbedAuthor;
   description?: string;
-  footer?: EmbedFooter;
-  image?: EmbedImage;
+  footer?: DiscordEmbedFooter;
+  image?: DiscordEmbedFooter;
   timestamp?: string;
   title?: string;
-  thumbnail?: EmbedImage;
+  thumbnail?: DiscordEmbedImage;
   url?: string;
 
   constructor(enforceLimits = true) {
@@ -63,19 +60,19 @@ export class Embed {
     return data;
   }
 
-  setAuthor(name: string, iconUrl?: string | User, url?: string) {
+  setAuthor(name: string, icon_url?: string | User, url?: string) {
     const finalName = this.enforceLimits
       ? this.fitData(name, embedLimits.authorName)
       : name;
-    if (typeof iconUrl === "string") {
-      this.author = { name: finalName, iconUrl, url };
-    } else if (iconUrl) {
+    if (typeof icon_url === "string") {
+      this.author = { name: finalName, icon_url, url };
+    } else if (icon_url) {
       this.author = {
         name: finalName,
-        iconUrl: avatarURL(
-          snowflakeToBigint(iconUrl.id),
-          snowflakeToBigint(iconUrl?.discriminator),
-          { avatar: iconUrl.avatar!, animated: true },
+        icon_url: getAvatarURL(
+          snowflakeToBigint(icon_url.id),
+          snowflakeToBigint(icon_url?.discriminator),
+          { avatar: icon_url.avatar!, animated: true }
         ),
         url,
       };
@@ -85,11 +82,12 @@ export class Embed {
   }
 
   setColor(color: string) {
-    this.color = color.toLowerCase() === `random`
-      ? // Random color
-        Math.floor(Math.random() * (0xffffff + 1))
-      : // Convert the hex to a acceptable color for discord
-        parseInt(color.replace("#", ""), 16);
+    this.color =
+      color.toLowerCase() === `random`
+        ? // Random color
+          Math.floor(Math.random() * (0xffffff + 1))
+        : // Convert the hex to a acceptable color for discord
+          parseInt(color.replace("#", ""), 16);
 
     return this;
   }
@@ -140,10 +138,10 @@ export class Embed {
     if (typeof url === "string") this.image = { url };
     else {
       this.image = {
-        url: avatarURL(
+        url: getAvatarURL(
           snowflakeToBigint(url.id),
           snowflakeToBigint(url.discriminator),
-          { avatar: url.avatar!, animated: true, size: 2048 },
+          { avatar: url.avatar!, animated: true, size: 2048 }
         ),
       };
     }

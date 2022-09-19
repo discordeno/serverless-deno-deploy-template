@@ -34,7 +34,7 @@ export const PermissionLevelHandlers: Record<
     Boolean(payload.member?.permissions) &&
     validatePermissions(payload.member!.permissions, ["ADMINISTRATOR"]),
   // TODO: Add your user id here and anyone else you want to give access to.
-  BOT_OWNERS: (payload) => [""].includes(payload.member?.user.id || payload.user?.id!),
+  BOT_OWNERS: (payload) => [""].includes((payload.member?.user?.id || payload.user?.id!).toString()),
 };
 
 export enum PermissionLevels {

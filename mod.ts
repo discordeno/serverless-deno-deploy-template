@@ -1,9 +1,4 @@
 import {
-  camelize,
-  DiscordInteractionResponseTypes,
-} from "./deps.ts";
-
-import {
   json,
   serve,
   validateRequest
@@ -107,7 +102,7 @@ async function main(request: Request) {
       await logWebhook(payload).catch(console.error);
       return json({
         data: result,
-        type: DiscordInteractionResponseTypes.ChannelMessageWithSource,
+        type: InteractionResponseTypes.ChannelMessageWithSource,
       });
     }
 
