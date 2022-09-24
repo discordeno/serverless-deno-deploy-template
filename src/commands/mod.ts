@@ -1,13 +1,12 @@
 import {
   ApplicationCommandOption,
   Interaction,
-  InteractionApplicationCommandCallbackData,
   InteractionResponse,
-} from "../../deps.ts";
-import ping from "./general/ping.ts";
-import avatar from "./general/avatar.ts";
-import language from "./general/language.ts";
-import { PermissionLevels } from "../utils/permissionLevels.ts";
+  InteractionCallbackData
+} from "discordeno/mod.ts";
+
+import { ping, avatar, language } from "template/commands/general/mod.ts"
+import { PermissionLevels } from "template/utils/mod.ts";
 
 export const commands: Record<string, Command | undefined> = {
   ping,
@@ -34,9 +33,9 @@ export interface Command {
   options?: ApplicationCommandOption[];
   /** The function that will be called when the command is executed. */
   execute: (
-    payload: Interaction,
+    payload: Interaction
   ) =>
     | InteractionResponse
-    | InteractionApplicationCommandCallbackData
-    | Promise<InteractionResponse | InteractionApplicationCommandCallbackData>;
+    | InteractionCallbackData
+    | Promise<InteractionResponse | InteractionCallbackData>;
 }

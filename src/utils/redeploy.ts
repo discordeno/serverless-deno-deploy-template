@@ -1,14 +1,17 @@
 import {
-  decode,
-  json,
   rest,
   setApplicationId,
   upsertSlashCommands,
 } from "../../deps.ts";
-import { commands } from "../commands/mod.ts";
-import translate from "../languages/translate.ts";
+import {  } from "sift/mod.ts";
 
-export default async function redeploy(request: Request) {
+import { decode } from "encoding/base64url.ts";
+import { json } from "sift/mod.ts";
+
+import { commands } from "template/commands/mod.ts";
+import { translate } from "template/languages/mod.ts";
+
+export async function redeploy(request: Request) {
   const authorization = request.headers.get("authorization");
   if (
     !authorization || (authorization !== Deno.env.get("REDEPLOY_AUTHORIZATION"))

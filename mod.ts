@@ -1,20 +1,23 @@
 import {
-  camelize,
-  DiscordInteractionResponseTypes,
+  json,
+  serve,
+  validateRequest
+} from "sift/mod.ts";
+import { 
   Interaction,
   InteractionResponseTypes,
   InteractionTypes,
-  json,
-  serve,
-  validateRequest,
-  verifySignature,
-} from "./deps.ts";
-import { commands } from "./src/commands/mod.ts";
-import translate from "./src/languages/translate.ts";
-import { isInteractionResponse } from "./src/utils/isInteractionResponse.ts";
-import { logWebhook } from "./src/utils/logWebhook.ts";
-import hasPermissionLevel from "./src/utils/permissionLevels.ts";
-import redeploy from "./src/utils/redeploy.ts";
+  verifySignature
+} from "discordeno/mod.ts";
+
+import { commands } from "template/commands/mod.ts";
+import { translate } from "template/languages/mod.ts";
+import { 
+  isInteractionResponse,
+  logWebhook,
+  hasPermissionLevel,
+  redeploy
+} from "template/utils/mod.ts";
 
 serve({
   "/": main,
@@ -99,7 +102,7 @@ async function main(request: Request) {
       await logWebhook(payload).catch(console.error);
       return json({
         data: result,
-        type: DiscordInteractionResponseTypes.ChannelMessageWithSource,
+        type: InteractionResponseTypes.ChannelMessageWithSource,
       });
     }
 

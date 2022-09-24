@@ -1,4 +1,4 @@
-import { Language } from "./mod.ts";
+import { Language } from "template/languages/mod.ts";
 
 const korean: Language = {
   // COMMON STRINGS

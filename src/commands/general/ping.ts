@@ -1,11 +1,9 @@
-import translate from "../../languages/translate.ts";
-import { Command } from "../mod.ts";
+import { translate } from "template/languages/mod.ts";
+import { Command } from "template/commands/mod.ts";
 
-const command: Command = {
+export const ping: Command = {
   global: true,
   execute: function (payload) {
-    return { content: translate(payload.guildId!, "PING_RESPONSE") };
+    return { content: translate(payload.guildId!.toString(), "PING_RESPONSE") };
   },
 };
-
-export default command;
