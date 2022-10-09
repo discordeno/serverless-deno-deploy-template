@@ -9,6 +9,7 @@ import {
   InteractionTypes,
   verifySignature
 } from "discordeno/mod.ts";
+import { camelize } from 'https://deno.land/x/camelize@2.0.0/mod.ts';
 
 import { commands } from "template/commands/mod.ts";
 import { translate } from "template/languages/mod.ts";
@@ -58,7 +59,7 @@ async function main(request: Request) {
     });
   }
 
-  const payload = camelize<Interaction>(JSON.parse(body));
+  const payload = camelize<Interaction>(JSON.parse(body)) as Interaction;
   if (payload.type === InteractionTypes.Ping) {
     return json({
       type: InteractionResponseTypes.Pong,
@@ -90,7 +91,8 @@ async function main(request: Request) {
         type: InteractionResponseTypes.ChannelMessageWithSource,
         data: {
           content: translate(
-            payload.guildId!,
+            // discordeno marks guildId as bigint, so need to convert it to string, else translate function throws error
+            payload.guildId! as unknown as string,
             "MISSING_PERM_LEVEL",
           ),
         },
