@@ -59,7 +59,7 @@ async function main(request: Request) {
     });
   }
 
-  const payload = camelize<Interaction>(JSON.parse(body));
+  const payload = camelize<Interaction>(JSON.parse(body)) as Interaction;
   if (payload.type === InteractionTypes.Ping) {
     return json({
       type: InteractionResponseTypes.Pong,
