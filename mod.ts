@@ -91,7 +91,8 @@ async function main(request: Request) {
         type: InteractionResponseTypes.ChannelMessageWithSource,
         data: {
           content: translate(
-            payload.guildId!,
+            // discordeno marks guildId as bigint, so need to convert it to string, else translate function throws error
+            payload.guildId! as unknown as string,
             "MISSING_PERM_LEVEL",
           ),
         },
