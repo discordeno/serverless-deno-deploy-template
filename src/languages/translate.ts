@@ -1,10 +1,10 @@
 import { languages } from "template/languages/mod.ts";
 
 /** This should hold the language names per guild id. <guildId, language> */
-export const serverLanguages = new Map<string, string>();
+export const serverLanguages = new Map<bigint, string>();
 
 export function translate (
-  guildId: string,
+  guildId: bigint,
   key: string,
   ...args: unknown[]
 ): string {

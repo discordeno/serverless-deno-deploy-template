@@ -3,6 +3,7 @@
     "template/": "./src/",
     "sift/": "https://deno.land/x/sift@0.4.2/",
     "discordeno/": "https://deno.land/x/discordeno@16.0.0/",
-    "encoding/": "https://deno.land/std@0.156.0/encoding/"
+    "encoding/": "https://deno.land/std@0.156.0/encoding/",
+    "camelize/": "https://deno.land/x/camelize@2.0.0/"
   }
 }
