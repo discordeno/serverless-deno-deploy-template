@@ -9,7 +9,7 @@ import {
   InteractionTypes,
   verifySignature
 } from "discordeno/mod.ts";
-import { camelize } from 'https://deno.land/x/camelize@2.0.0/mod.ts';
+import { camelize } from "camelize/mod.ts";
 
 import { commands } from "template/commands/mod.ts";
 import { translate } from "template/languages/mod.ts";
