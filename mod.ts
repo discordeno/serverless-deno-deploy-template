@@ -92,7 +92,7 @@ async function main(request: Request) {
         data: {
           content: translate(
             // discordeno marks guildId as bigint, so need to convert it to string, else translate function throws error
-            payload.guildId! as unknown as string,
+            payload.guildId!,
             "MISSING_PERM_LEVEL",
           ),
         },
